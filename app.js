@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', users);
 
-app.get('*', (req, res)=>{
+app.get('/', (req, res)=>{
     res.send({
         greetings: 'Hello World'
     });

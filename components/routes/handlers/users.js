@@ -1,13 +1,21 @@
 "use strict";
 
 const usersService = require('../../services/users');
+const users = {};
 
-function users(req, res) {
+users.create = function (req, res) {
+    usersService.create(req.body).then(response =>{
+       res.status(200).send(response);
+    }).catch(err =>{
+        res.status(400).send(err);
+    });
+}
 
-    usersService(req.body).then(response =>{
-        res.status(201).json(response);
-    }).catch(error =>{
-        res.status(400).json(error);
+users.find = function(req, res) {
+    usersService.find(req.query).then(response =>{
+        res.status(200).send(response);
+    }).catch(err =>{
+        res.status(400).send(err);
     })
 }
 

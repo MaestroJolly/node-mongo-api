@@ -2,13 +2,28 @@
 
 const mongoose = require('mongoose');
 const usersModel = require('../models/users');
+const users = {};
 
-function users(params) {   
-    usersModel.create(params)
-    .then(response =>{
-        return response;
-    }).catch(err=>{
-        return err;
+
+users.create = function (params) {
+    return new Promise((resolve, reject) => {
+        usersModel.create(params)
+        .then(response =>{
+            resolve(response.toJSON());
+        }).catch(err=>{
+            reject(err);
+        })
+    })
+}
+
+users.find = function (params) {
+    return new Promise((resolve, reject) => {
+        usersModel.find({ name: params.name })
+        .then((response) =>{
+            resolve(response);
+        }).catch(err =>{
+            reject(err);
+        })
     })
 }
 
