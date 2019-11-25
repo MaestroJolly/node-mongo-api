@@ -19,4 +19,23 @@ users.find = function(req, res) {
     })
 }
 
+users.findAll = function(req, res){
+    async () => {
+        try {
+            return await usersService.findAll();
+        } catch(error){
+            return error;
+        }
+    }
+}
+
+users.update = function(req, res){
+    usersService.update(req.body).then(response =>{
+        res.status(200).send(response);
+    }).catch(err =>{
+        console.log(err);
+        res.status(400).send(err);
+    })
+}
+
 module.exports = users;

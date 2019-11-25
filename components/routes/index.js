@@ -8,4 +8,8 @@ router.post('/create', users.create);
 
 router.get('/find', users.find);
 
+router.get('/findall', users.findAll); 
+
+router.put('/update', users.update);
+
 module.exports = router;

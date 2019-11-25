@@ -27,4 +27,25 @@ users.find = function (params) {
     })
 }
 
+users.findAll = function (){
+    async () => {
+        try {
+            return await usersModel.find({});
+        } catch (error) {
+            return error;
+        }
+    }
+}
+
+users.update = function (params){
+    return new Promise((resolve, reject) =>{
+        usersModel.updateMany(params)
+        .then(response =>{
+            resolve(response);
+        }).catch(err =>{
+            reject(err);
+        })
+    })
+}
+
 module.exports = users;
