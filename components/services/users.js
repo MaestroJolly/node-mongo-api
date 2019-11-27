@@ -27,14 +27,22 @@ users.find = function (params) {
     })
 }
 
-users.findAll = function (){
-    async () => {
-        try {
-            return await usersModel.find({});
-        } catch (error) {
-            return error;
-        }
-    }
+users.findAll = function (params){
+    // return async (params) => {
+    //     try {
+    //         return await usersModel.find();
+    //     } catch (error) {
+    //         return error;
+    //     }
+    // }
+    return new Promise((resolve, reject) => {
+        usersModel.find()
+        .then((response) =>{
+            resolve(response);
+        }).catch((err) =>{
+            reject(err);
+        })
+    })
 }
 
 users.update = function (params){

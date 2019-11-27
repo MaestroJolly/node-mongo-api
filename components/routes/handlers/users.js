@@ -20,13 +20,18 @@ users.find = function(req, res) {
 }
 
 users.findAll = function(req, res){
-    async () => {
-        try {
-            return await usersService.findAll();
-        } catch(error){
-            return error;
-        }
-    }
+    usersService.findAll(req).then((response) => {
+        res.status(200).send(response);
+    }).catch((err) =>{
+        res.status(400).send(err);
+    })
+    // async (req) => {
+    //     try {
+    //         await usersService.findAll();
+    //     } catch(error){
+    //         return error;
+    //     }
+    // }
 }
 
 users.update = function(req, res){
